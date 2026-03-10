@@ -1,3 +1,7 @@
+/* ============================================
+   LIBER ANIMUS — app.css
+   Styles khusus halaman chat
+   ============================================ */
 
 body { height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
 
@@ -116,44 +120,41 @@ body { height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
 /* HUMAN MODE MODAL */
 .hm-modal { background: var(--surface); border: 1px solid var(--border2); border-radius: var(--r-xl); padding: 40px; max-width: 440px; width: 100%; position: relative; animation: modalIn 0.3s ease; box-shadow: var(--shadow-xl); }
 
-@media(max-width: 768px) {
-  /* Sembunyiin sidebar */
+/* ── MOBILE ONLY ─────────────────────────── */
+.bottom-nav { display: none; }
+.mobile-panel { display: none; }
+.panel-overlay { display: none; }
+
+@media (max-width: 768px) {
   .sidebar { display: none !important; }
   .input-hint { display: none; }
-
-  /* Layout utama */
   .app-body { grid-template-columns: 1fr; }
+  .back-link { display: none; }
+  .topbar { padding: 0 14px; }
+  .chat-header { padding: 10px 14px; }
+  .chat-header-icon { font-size: 20px; }
+  .chat-header-title { font-size: 14px; }
+  .msg { max-width: 90%; }
 
-  /* Kasih ruang buat bottom nav */
-  body { padding-bottom: 60px; }
-
-  /* Input area — fix keyboard nutupin */
+  /* Input fix — keyboard nutupin */
+  .chat-messages { padding: 16px 14px 140px; }
   .input-area {
     position: fixed;
-    bottom: 60px;
-    left: 0; right: 0;
+    bottom: 60px; left: 0; right: 0;
     z-index: 50;
     padding: 10px 14px;
     background: var(--surface);
     border-top: 1px solid var(--border);
   }
 
-  /* Chat messages — jangan ketutupan input+bottomnav */
-  .chat-messages {
-    padding: 16px 14px;
-    padding-bottom: 130px;
-  }
-
-  .msg { max-width: 90%; }
-
-  /* BOTTOM NAVIGATION */
+  /* Bottom nav */
   .bottom-nav {
+    display: flex;
     position: fixed;
     bottom: 0; left: 0; right: 0;
     height: 60px;
     background: var(--surface);
     border-top: 1px solid var(--border);
-    display: flex;
     align-items: center;
     justify-content: space-around;
     z-index: 100;
@@ -173,6 +174,7 @@ body { height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
 
   /* Slide up panel */
   .mobile-panel {
+    display: block;
     position: fixed;
     bottom: 60px; left: 0; right: 0;
     background: var(--surface);
@@ -198,8 +200,6 @@ body { height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
     letter-spacing: 0.12em; color: var(--text-muted);
     font-weight: 600; margin-bottom: 12px;
   }
-
-  /* Topic buttons di panel */
   .mobile-panel .topic-btn {
     width: 100%; background: transparent; border: none;
     border-radius: var(--r-md); padding: 12px 14px;
@@ -212,20 +212,17 @@ body { height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
     background: linear-gradient(135deg, rgba(192,123,69,0.12), rgba(232,168,124,0.06));
     color: var(--accent); font-weight: 500;
   }
-
-  /* Mood di panel */
   .mobile-panel .mood-row { display: flex; gap: 8px; justify-content: center; margin-top: 8px; }
   .mobile-panel .mood-btn {
     flex: 1; background: transparent; border: 1px solid transparent;
     border-radius: var(--r-sm); padding: 10px 4px;
     font-size: 24px; cursor: pointer; transition: all 0.2s;
   }
-  .mobile-panel .mood-btn.selected {
-    background: var(--surface); border-color: var(--accent);
-  }
+  .mobile-panel .mood-btn.selected { background: var(--surface); border-color: var(--accent); }
 
-  /* Overlay gelap saat panel buka */
+  /* Overlay */
   .panel-overlay {
+    display: block;
     position: fixed; inset: 0;
     background: rgba(0,0,0,0.3);
     z-index: 80;
@@ -233,14 +230,4 @@ body { height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
     transition: opacity 0.3s;
   }
   .panel-overlay.show { opacity: 1; pointer-events: all; }
-
-  /* Topbar di mobile */
-  .topbar { padding: 0 14px; }
-  .back-link { display: none; }
-  .topbar-right .back-link:last-child { display: flex; }
-
-  /* Chat header lebih compact */
-  .chat-header { padding: 10px 14px; }
-  .chat-header-icon { font-size: 20px; }
-  .chat-header-title { font-size: 14px; }
 }
