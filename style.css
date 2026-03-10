@@ -1,13 +1,8 @@
-/* ============================================
-   LIBER ANIMUS — Global CSS
-   Edit warna, font, spacing di sini semua
-   ============================================ */
+
 
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap');
 
-/* ============================================
-   VARIABLES — edit di sini kalau mau ganti tema
-   ============================================ */
+
 :root {
   /* Backgrounds */
   --bg:        #fdf6ee;
