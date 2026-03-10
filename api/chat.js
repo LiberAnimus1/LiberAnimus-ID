@@ -9,7 +9,7 @@ export default async function handler(req, res) {
 
   // CORS — ganti dengan domain Vercel lo yang sebenarnya
   const origin  = req.headers.origin || '';
-  const allowed = ['https://liber-animus-id.vercel.app/', 'http://localhost:3000'];
+  const allowed = ['https://liber-animus-id.vercel.app', 'http://localhost:3000'];
   if (process.env.NODE_ENV !== 'development' && !allowed.some(o => origin.startsWith(o))) {
     return res.status(403).json({ error: 'Forbidden' });
   }
