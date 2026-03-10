@@ -137,5 +137,75 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 document.getElementById('hmModal').addEventListener('click', function(e) { if(e.target===this) this.classList.remove('active'); });
 </script>
+
+<!-- BOTTOM NAV (mobile only) -->
+<div class="panel-overlay" id="panelOverlay" onclick="closePanels()"></div>
+
+<!-- Panel Topik -->
+<div class="mobile-panel" id="topikPanel">
+  <div class="panel-handle"></div>
+  <div class="panel-title">Topik Cerita</div>
+  <button class="topic-btn" data-topic="umum"     onclick="LiberChat.setTopic('umum');closePanels()">🌙 Curhat Bebas</button>
+  <button class="topic-btn" data-topic="depresi"  onclick="LiberChat.setTopic('depresi');closePanels()">🫂 Perasaan Berat</button>
+  <button class="topic-btn" data-topic="bullying" onclick="LiberChat.setTopic('bullying');closePanels()">⚖️ Perundungan</button>
+  <button class="topic-btn" data-topic="putus"    onclick="LiberChat.setTopic('putus');closePanels()">💔 Patah Hati</button>
+  <button class="topic-btn" data-topic="keluarga" onclick="LiberChat.setTopic('keluarga');closePanels()">🏠 Keluarga</button>
+</div>
+
+<!-- Panel Mood -->
+<div class="mobile-panel" id="moodPanel">
+  <div class="panel-handle"></div>
+  <div class="panel-title">Mood Hari Ini</div>
+  <div class="mood-row">
+    <button class="mood-btn" onclick="saveMood(this,1)" title="Sangat Berat">😭</button>
+    <button class="mood-btn" onclick="saveMood(this,2)" title="Berat">😔</button>
+    <button class="mood-btn" onclick="saveMood(this,3)" title="Biasa">😐</button>
+    <button class="mood-btn" onclick="saveMood(this,4)" title="Lumayan">🙂</button>
+    <button class="mood-btn" onclick="saveMood(this,5)" title="Baik">😊</button>
+  </div>
+  <div class="mood-saved" id="moodSavedMobile" style="text-align:center;margin-top:12px;font-size:13px;color:var(--text-muted)"></div>
+  <a href="mood.html" style="display:block;text-align:center;margin-top:16px;font-size:13px;color:var(--accent)">Lihat Mood Tracker →</a>
+</div>
+
+<!-- Bottom Nav -->
+<nav class="bottom-nav">
+  <button class="bn-item active" id="bn-chat" onclick="showChat()">
+    <span>💬</span><span>Chat</span>
+  </button>
+  <button class="bn-item" id="bn-topik" onclick="togglePanel('topikPanel','bn-topik')">
+    <span>📂</span><span>Topik</span>
+  </button>
+  <button class="bn-item" id="bn-human" onclick="document.getElementById('hmModal').classList.add('active');closePanels()">
+    <span>✈️</span><span>Human</span>
+  </button>
+  <button class="bn-item" id="bn-mood" onclick="togglePanel('moodPanel','bn-mood')">
+    <span>📊</span><span>Mood</span>
+  </button>
+</nav>
+
+<script>
+function togglePanel(panelId, btnId) {
+  const panel = document.getElementById(panelId);
+  const overlay = document.getElementById('panelOverlay');
+  const isOpen = panel.classList.contains('open');
+  closePanels();
+  if (!isOpen) {
+    panel.classList.add('open');
+    overlay.classList.add('show');
+    document.querySelectorAll('.bn-item').forEach(b => b.classList.remove('active'));
+    document.getElementById(btnId)?.classList.add('active');
+  }
+}
+function closePanels() {
+  document.querySelectorAll('.mobile-panel').forEach(p => p.classList.remove('open'));
+  document.getElementById('panelOverlay')?.classList.remove('show');
+  document.getElementById('bn-chat')?.classList.add('active');
+  document.querySelectorAll('.bn-item:not(#bn-chat)').forEach(b => b.classList.remove('active'));
+}
+function showChat() {
+  closePanels();
+  document.getElementById('bn-chat').classList.add('active');
+}
+</script>
 </body>
 </html>
